@@ -122,25 +122,57 @@
     @media (max-width: 800px) {
       .b1,.b2,.b3,.b4 { width: 120vw; height: 120vw; }
       .wm .tick { font-size: 110px; }
-      .wrap { padding: 0 20px; }
+      /* 인라인 padding 을 덮어쓰되 좌우 여백은 반드시 남긴다 (세로만 !important) */
+      .wrap { padding-left: 20px !important; padding-right: 20px !important; }
+      .sec { padding-top: 64px !important; padding-bottom: 64px !important; }
       .grid2, .demo { grid-template-columns: repeat(1, minmax(0, 1fr)); }
       .nav-links { display: none; }
-      .h1 { font-size: 58px !important; line-height: 1.1 !important; }
-      .h2 { font-size: 44px !important; }
-      .sec { padding: 64px 0 !important; }
-      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .navtoggle { display: inline-flex !important; }
+      .h1 { font-size: 52px !important; line-height: 1.12 !important; }
+      .h2 { font-size: 38px !important; line-height: 1.15 !important; }
       .steps { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
       .price3 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
       .feat { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
       .rules2 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
       .sticky { position: static !important; }
       .shot { transform: none !important; }
+      /* 제품 화면은 390px 로 줄이면 글씨가 안 보인다 → 좌우로 밀어서 보게 한다 */
+      .shotscroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px 8px 0 0; }
+      .shotscroll img { min-width: 840px; }
+      .shothint { display: block !important; }
+      .wm { display: none; }
+      .ticker .tick { font-size: 15px !important; }
+      h1, h2, h3, p, div { word-break: keep-all; overflow-wrap: break-word; }
+      .btn { font-size: 14px; }
+      .chip { font-size: 12px; }
     }
+    @media (max-width: 380px) {
+      .h1 { font-size: 44px !important; }
+      .h2 { font-size: 32px !important; }
+    }
+    /* 모바일 메뉴 */
+    .navtoggle { display: none; align-items: center; justify-content: center; width: 42px; height: 38px; border-radius: 10px; border: 1px solid rgba(245,244,239,.18); background: rgba(245,244,239,.06); cursor: pointer; }
+    .navtoggle span { display: block; width: 18px; height: 2px; background: #F5F4EF; position: relative; transition: background .2s; }
+    .navtoggle span::before, .navtoggle span::after { content: ""; position: absolute; left: 0; width: 18px; height: 2px; background: #F5F4EF; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+    .navtoggle span::before { top: -6px; } .navtoggle span::after { top: 6px; }
+    .navtoggle[aria-expanded="true"] span { background: transparent; }
+    .navtoggle[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+    .navtoggle[aria-expanded="true"] span::after { transform: translateY(-6px) rotate(-45deg); }
+    #navpanel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s cubic-bezier(.2,.8,.2,1); background: rgba(15,14,12,.96); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(245,244,239,0); }
+    #navpanel.open { grid-template-rows: 1fr; border-bottom-color: rgba(245,244,239,.08); }
+    #navpanel > div { overflow: hidden; }
+    #navpanel a { display: block; padding: 14px 20px; color: #C9C4B8; font-size: 15px; border-top: 1px solid rgba(245,244,239,.06); text-decoration: none; }
+    #navpanel a:active { background: rgba(245,244,239,.06); }
+    .shothint { display: none; text-align: center; font-size: 11px; color: #9A958B; padding: 8px 0 2px; letter-spacing: .04em; }
   
 /* 정적 사이트 전용 */
 .demo-side{display:flex;flex-direction:column;gap:12px;min-height:400px}
 .acc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-@media (max-width:800px){.acc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:800px){.acc{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 14px}
+.acc>div{padding-left:14px !important}
+.acc .disp{font-size:38px !important;white-space:nowrap}
+.acc>div>div:last-child{font-size:12px !important}}
+@media (max-width:380px){.acc{grid-template-columns:repeat(1,minmax(0,1fr))}}
 .foot a{color:#C9C4B8}
 .note{font-size:12px;color:#9A958B}
 </style>
@@ -163,7 +195,16 @@
       <a href="#pricing" style="font-size:13px;color:#C9C4B8">도입</a>
       <a href="#contact" class="btn btn-pri" style="font-size:13px;padding:9px 16px;box-shadow:none">도면 보내기</a>
     </div>
+    <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navpanel" aria-label="메뉴 열기"><span></span></button>
   </div>
+  <div id="navpanel"><div>
+    <a href="#demo">체험</a>
+    <a href="#accuracy">정확도</a>
+    <a href="#features">기능</a>
+    <a href="#rules">검사 규칙</a>
+    <a href="#pricing">도입</a>
+    <a href="#contact" style="color:#D97757;font-weight:600">도면 보내기 →</a>
+  </div></div>
 </div>
 
 <!-- HERO -->
@@ -188,7 +229,8 @@
     <div class="glow"></div>
     <div class="shot" id="shot" style="position:relative;background:#1A1917;border:1px solid rgba(245,244,239,.14);border-radius:18px 18px 0 0;padding:10px 10px 0;box-shadow:0 -20px 80px rgba(0,0,0,.5)">
       <div style="display:flex;gap:6px;padding:2px 4px 10px"><span style="width:10px;height:10px;border-radius:999px;background:#3A3733"></span><span style="width:10px;height:10px;border-radius:999px;background:#3A3733"></span><span style="width:10px;height:10px;border-radius:999px;background:#3A3733"></span></div>
-      <img src="img/hero.jpg" width="1800" height="1075" alt="MoldCheck 화면 — 몰드베이스 3D 위에 오류·경고 위치가 표시된 모습" style="display:block;width:100%;height:auto;border-radius:8px 8px 0 0">
+      <div class="shotscroll"><img src="img/hero.jpg" width="1800" height="1075" alt="MoldCheck 화면 — 몰드베이스 3D 위에 오류·경고 위치가 표시된 모습" style="display:block;width:100%;height:auto;border-radius:8px 8px 0 0"></div>
+      <div class="shothint mono">← 좌우로 밀어서 보기 →</div>
     </div>
   </div>
 </div>
@@ -617,6 +659,20 @@ if(!CSS.supports('animation-timeline','view()')&&'IntersectionObserver' in windo
   document.querySelectorAll('.reveal').forEach(function(el){ el.style.animation='none'; el.style.opacity='0'; io.observe(el); });
 }
 draw(); feats(); rules(); faq(); cads(); mail();
+})();
+
+/* 모바일 메뉴 */
+(function(){
+  var t=document.getElementById('navtoggle'), p=document.getElementById('navpanel');
+  if(!t||!p) return;
+  function close(){ p.classList.remove('open'); t.setAttribute('aria-expanded','false'); t.setAttribute('aria-label','메뉴 열기'); }
+  function toggle(){ var on=!p.classList.contains('open'); p.classList.toggle('open',on);
+    t.setAttribute('aria-expanded',on?'true':'false'); t.setAttribute('aria-label',on?'메뉴 닫기':'메뉴 열기'); }
+  t.addEventListener('click',function(e){ e.stopPropagation(); toggle(); });
+  p.addEventListener('click',function(e){ if(e.target.tagName==='A') close(); });
+  document.addEventListener('click',function(e){ if(p.classList.contains('open')&&!p.contains(e.target)&&e.target!==t) close(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  addEventListener('resize',function(){ if(innerWidth>800) close(); });
 })();
 </script>
 </body>
