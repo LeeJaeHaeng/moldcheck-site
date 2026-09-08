@@ -1,0 +1,98 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>오픈소스 고지 · MoldCheck</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+body{margin:0;background:#F5F4EF;color:#1F1D1A;font-family:"IBM Plex Sans KR","Apple SD Gothic Neo",sans-serif;line-height:1.7;word-break:keep-all}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 80px}
+a{color:#D97757}h1{font-size:30px;margin:0 0 8px}h2{font-size:22px;margin:36px 0 8px;border-top:1px solid #E2DFD6;padding-top:20px}h3{font-size:17px;margin:22px 0 6px}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px}th,td{border:1px solid #E2DFD6;padding:8px 10px;text-align:left;vertical-align:top}th{background:#F0EEE7}
+pre{background:#1F1D1A;color:#F5F4EF;padding:14px;border-radius:8px;overflow:auto;font-family:"IBM Plex Mono",monospace;font-size:12.5px;line-height:1.5;white-space:pre-wrap}
+code{background:#F0EEE7;padding:1px 5px;border-radius:3px;font-family:"IBM Plex Mono",monospace;font-size:.92em}
+blockquote{border-left:3px solid #D97757;background:#FFF6F1;margin:14px 0;padding:10px 16px}
+ul{padding-left:22px}li{margin:4px 0}hr{border:0;border-top:1px solid #E2DFD6;margin:24px 0}
+.top{font-size:13px;margin-bottom:24px}
+</style></head><body><div class="wrap"><div class="top"><a href="index.html">← MoldCheck 홈</a></div><h1>오픈소스 및 제3자 구성요소 고지 (Third-Party Notices)</h1>
+
+<p>MoldCheck 는 아래 오픈소스 구성요소를 포함하거나 사용합니다. 각 라이선스의 고지 의무를 이행하기 위해 원문을 함께 싣습니다.</p>
+<p>버전은 실제 빌드에 포함된 것을 확인한 값입니다.</p>
+
+<table>
+<tr><th>구성요소</th><th>버전</th><th>라이선스</th><th>포함 범위</th><th>용도</th></tr>
+<tr><td>three.js</td><td>r128</td><td>MIT</td><td>사내용 빌드 · 판매본 <strong>모두 포함</strong></td><td>3D 렌더링</td></tr>
+<tr><td>pako</td><td>2.1.0</td><td>MIT</td><td>사내용 빌드 · 판매본 <strong>모두 포함</strong></td><td>내장 샘플 압축 해제(사내용), 데이터 압축</td></tr>
+<tr><td>@mlightcad/libredwg-web (libredwg)</td><td>0.7.10</td><td><strong>GPL-3.0</strong></td><td><strong>사내용 빌드에만 포함. 판매본(MoldCheck_dist.html)에는 코드가 들어가지 않음</strong></td><td>DWG 파일 직접 읽기</td></tr>
+<tr><td>IBM Plex Sans KR / IBM Plex Mono</td><td>Google Fonts 배포본</td><td>SIL Open Font License 1.1</td><td><strong>포함하지 않음</strong> — 실행 시 Google Fonts 에서 내려받음</td><td>화면 글꼴</td></tr>
+<tr><td>Barlow Condensed</td><td>Google Fonts 배포본</td><td>SIL Open Font License 1.1</td><td><strong>포함하지 않음</strong> — 실행 시 Google Fonts 에서 내려받음</td><td>화면 글꼴(제목)</td></tr>
+<tr><td>Google Gemini API</td><td>서비스</td><td>Google API 이용약관</td><td>코드 미포함 · 선택 기능</td><td>주석 한국어→중국어 자동 번역(끌 수 있음)</td></tr>
+</table>
+
+<h2>GPL-3.0 (libredwg) 취급 방침</h2>
+<ul><li>libredwg 는 GPL-3.0 이므로, 이를 포함한 빌드를 <strong>배포하면 전체 저작물에 GPL 의무가 발생할 수 있습니다.</strong></li>
+<li>따라서 <strong>판매용 빌드(<code>MoldCheck_dist.html</code>)에는 libredwg 를 포함하지 않습니다.</strong> 빌드 스크립트(<code>build.py</code>)가 판매본에 libredwg WASM 이 들어가지 않았음을 매 빌드마다 검사(assert)합니다.</li>
+<li>판매본에서 DWG 를 읽어야 하면 (1) 고객이 DXF 로 내보내거나, (2) 사내 변환 서버(별도 설치, GPL 코드는 서버에만 존재)를 사용합니다.</li>
+<li>사내용 빌드(<code>MoldCheck.html</code>)는 사내에서만 사용하며 외부에 배포하지 않습니다. 외부 배포 시에는 GPL 준수(소스 공개) 또는 libredwg 제거가 필요합니다.</li>
+</ul>
+<h2>글꼴에 관한 안내</h2>
+<p>글꼴 파일은 프로그램에 포함되어 있지 않고, 실행할 때 <code>fonts.googleapis.com</code> / <code>fonts.gstatic.com</code> 에서 내려받습니다.</p>
+<ul><li>인터넷이 없는 PC에서는 시스템 기본 글꼴로 표시되며 기능에는 영향이 없습니다.</li>
+<li>인터넷이 연결된 PC에서는 글꼴을 받기 위한 요청이 Google 로 전송됩니다(도면 데이터는 전송되지 않으며, 요청에는 글꼴 주소·IP·브라우저 정보가 포함됩니다). 이 요청을 원하지 않으면 사내 배포 시 글꼴을 파일에 포함하거나 링크를 제거해 주세요.</li>
+</ul>
+<hr>
+
+<h2>MIT License — three.js</h2>
+<pre>
+Copyright © 2010-2021 three.js authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+<pre>
+
+<h2>MIT License — pako</h2>
+<pre>
+Copyright (C) 2014-2017 by Vitaly Puzrin and Andrei Tuputcyn
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+<pre>
+
+<h2>GPL-3.0 — @mlightcad/libredwg-web (사내용 빌드 한정)</h2>
+<p>전문: <a href="https://www.gnu.org/licenses/gpl-3.0.txt">https://www.gnu.org/licenses/gpl-3.0.txt</a> · 원본 저장소: <a href="https://github.com/mlightcad/libredwg-web">https://github.com/mlightcad/libredwg-web</a></p>
+<p>LibreDWG 자체는 GNU LibreDWG 프로젝트(<a href="https://www.gnu.org/software/libredwg/">https://www.gnu.org/software/libredwg/</a>)의 저작물이며 GPL-3.0 로 배포됩니다.</p>
+
+<h2>SIL Open Font License 1.1 — IBM Plex, Barlow</h2>
+<p>전문: <a href="https://openfontlicense.org/">https://openfontlicense.org/</a> · IBM Plex: <a href="https://github.com/IBM/plex">https://github.com/IBM/plex</a> · Barlow: <a href="https://github.com/jpt/barlow">https://github.com/jpt/barlow</a></p>
+<p>OFL 은 글꼴 파일의 재배포·수정에 관한 라이선스이며, 본 프로그램은 글꼴 파일을 포함하지 않고 Google Fonts 에서 참조합니다.</p>
+
+<h2>규격·표 데이터 출처</h2>
+<p>치수 표(ISO 273 여유공, ISO 4762 볼트 머리, DIN 13 탭 하경, KS B 0236 / ISO 15065 카운터보어, DIN 974-1, ISO 6751 / DIN 1530 이젝터핀 머리, 관용나사 하경 등)는 공개된 규격 수치를 대조해 프로그램에 수록한 것으로, 규격 문서 원문을 복제해 배포하지 않습니다. 각 규칙 화면에서 해당 출처를 표시합니다. 규격 원문이 필요하면 표준 기관(KS/ISO/DIN)에서 정식으로 구입하시기 바랍니다.</p>
+</div></body></html>

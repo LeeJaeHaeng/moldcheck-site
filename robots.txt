@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://leejaehaeng.github.io/moldcheck-site/sitemap.xml
