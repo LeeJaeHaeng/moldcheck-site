@@ -433,19 +433,37 @@
           <div class="mono" style="font-size:14px;color:#C9C4B8"><a href="mailto:dlwogod2479@gmail.com" style="color:#D97757">dlwogod2479@gmail.com</a></div>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px;background:rgba(245,244,239,.04);border:1px solid rgba(245,244,239,.12);border-radius:16px;padding:26px">
-        <div class="mono" style="font-size:12px;color:#D97757;letter-spacing:.1em">문의 메일 만들기</div>
-        <input class="field" id="fCompany" placeholder="회사명">
-        <input class="field" id="fName" placeholder="담당자 이름">
-        <input class="field" id="fEmail" placeholder="이메일">
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px" id="cads"></div>
-        <a class="btn btn-pri" id="mailBtn" href="#" style="margin-top:8px;text-align:center">메일 앱으로 보내기</a>
-        <div class="mono" style="font-size:11px;color:#9A958B">버튼을 누르면 메일 앱이 열립니다. 도면(x_t/STEP)은 메일에 첨부해 주세요.</div>
+      <div id="applybox" style="display:flex;flex-direction:column;gap:10px;background:rgba(245,244,239,.04);border:1px solid rgba(245,244,239,.12);border-radius:16px;padding:26px">
+        <div class="mono" style="font-size:12px;color:#D97757;letter-spacing:.1em">30일 평가판 신청</div>
+        <p style="margin:0 0 4px;font-size:13px;color:#9A958B;line-height:1.6">신청해 주시면 평가판 파일과 설치 안내를 보내 드립니다. 기능 제한 없이 30일간 실제 도면으로 사용하실 수 있습니다.</p>
+        <input class="field" id="fCompany" placeholder="회사명 *" autocomplete="organization">
+        <input class="field" id="fName" placeholder="담당자 이름 *" autocomplete="name">
+        <input class="field" id="fEmail" type="email" placeholder="이메일 *" autocomplete="email">
+        <input class="field" id="fTel" placeholder="연락처 (선택)" autocomplete="tel">
+        <div style="font-size:12px;color:#9A958B;margin-top:6px">사용 중인 CAD</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap" id="cads"></div>
+        <textarea class="field" id="fMemo" rows="3" placeholder="문의 내용 (선택) — 어떤 부품을 주로 검토하시는지 적어 주시면 맞춰서 안내드립니다" style="resize:vertical;font-family:inherit"></textarea>
+
+        <div style="margin-top:10px;border-top:1px solid rgba(245,244,239,.12);padding-top:14px;display:flex;flex-direction:column;gap:10px">
+          <label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;font-size:13px;line-height:1.55">
+            <input type="checkbox" id="agree1" style="margin-top:3px;flex:0 0 auto;width:16px;height:16px;accent-color:#D97757">
+            <span><b style="color:#D97757">[필수]</b> 개인정보 수집·이용에 동의합니다.
+              <span style="display:block;color:#9A958B;font-size:12px;margin-top:3px">수집 항목: 회사명·담당자명·이메일·연락처 · 이용 목적: 평가판 발송 및 문의 응대 · 보유 기간: 목적 달성 후 1년 이내 파기. 동의를 거부하실 수 있으나 이 경우 평가판 발송이 어렵습니다. <a href="privacy.html" style="color:#C9C4B8;text-decoration:underline">자세히</a></span></span>
+          </label>
+          <label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;font-size:13px;line-height:1.55">
+            <input type="checkbox" id="agree2" style="margin-top:3px;flex:0 0 auto;width:16px;height:16px;accent-color:#D97757">
+            <span><span style="color:#9A958B">[선택]</span> 제품 업데이트·기능 안내 메일 수신에 동의합니다.
+              <span style="display:block;color:#9A958B;font-size:12px;margin-top:3px">동의하지 않으셔도 신청하신 평가판은 정상 발송됩니다. 언제든 수신거부하실 수 있습니다.</span></span>
+          </label>
+        </div>
+
+        <button class="btn btn-pri" id="applyBtn" style="margin-top:10px;text-align:center;opacity:.45;cursor:not-allowed" disabled>평가판 신청하기</button>
+        <div class="mono" id="applyMsg" style="font-size:11px;color:#9A958B;min-height:16px">* 표시는 필수 입력입니다.</div>
       </div>
     </div>
     <div class="foot" style="display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:20px;border-top:1px solid rgba(245,244,239,.12);flex-wrap:wrap;gap:10px">
       <div class="disp" style="font-size:22px;font-weight:700">Mold<span style="color:#D97757">Check</span></div>
-      <div class="mono" style="font-size:12px;color:#9A958B">© 2026 MoldCheck — <a href="eula.html">사용권 계약</a> · <a href="notices.html">오픈소스 고지</a> · three.js / pako (MIT), IBM Plex · Barlow (OFL)</div>
+      <div class="mono" style="font-size:12px;color:#9A958B">© 2026 MoldCheck — <a href="eula.html">사용권 계약</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="notices.html">오픈소스 고지</a> · three.js / pako (MIT), IBM Plex · Barlow (OFL)</div>
     </div>
   </div>
 </div>
@@ -589,7 +607,7 @@ document.addEventListener('click',function(e){
   else if(t.hasAttribute('data-grade')){ st.grade=t.getAttribute('data-grade'); st.rule=null; rules(); }
   else if(t.hasAttribute('data-rule')){ var i=+t.getAttribute('data-rule'); st.rule=st.rule===i?null:i; rules(); }
   else if(t.hasAttribute('data-faq')){ var j=+t.getAttribute('data-faq'); st.faq=st.faq===j?-1:j; faq(); }
-  else if(t.hasAttribute('data-cad')){ st.cad=t.getAttribute('data-cad'); cads(); mail(); }
+  else if(t.hasAttribute('data-cad')){ st.cad=t.getAttribute('data-cad'); cads(); applyState(); }
 });
 document.addEventListener('mouseover',function(e){
   var t=e.target.closest('[data-feat]'); if(t){ st.feat=+t.getAttribute('data-feat'); feats(); }
@@ -636,12 +654,70 @@ function cads(){
   $('#cads').innerHTML=['NX','SolidWorks','CATIA','기타'].map(function(c){
     return '<span class="chip" data-cad="'+c+'" style="'+chip(st.cad===c)+'">'+c+'</span>'}).join('');
 }
-function mail(){
-  var v=function(id){return ($(id)&&$(id).value||'').trim()};
-  var body='MoldCheck 도면 검사 요청\n\n회사명: '+v('#fCompany')+'\n담당자: '+v('#fName')+'\n이메일: '+v('#fEmail')+'\n사용 CAD: '+st.cad+'\n\n도면 1건(x_t 또는 STEP)을 첨부합니다. 검사 결과 리포트를 부탁드립니다.';
-  $('#mailBtn').href='mailto:dlwogod2479@gmail.com?subject='+encodeURIComponent('[MoldCheck] 도면 검사 요청 — '+(v('#fCompany')||''))+'&body='+encodeURIComponent(body);
+/* ── 평가판 신청 ──────────────────────────────────────────────
+   FORM_ENDPOINT 를 비워두면 메일 앱으로 대체 동작한다(사이트가 절대 먹통이 되지 않게).
+   Google Apps Script 웹앱 주소를 넣으면 시트에 기록되고 알림 메일이 온다.
+   설정 방법: apps_script/설치안내.md                                   */
+var FORM_ENDPOINT='';
+var MAIL_TO='dlwogod2479@gmail.com';
+
+function fv(id){ var e=$(id); return (e&&e.value||'').trim(); }
+function validEmail(x){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(x); }
+function applyState(){
+  var okReq = fv('#fCompany') && fv('#fName') && validEmail(fv('#fEmail'));
+  var okAgr = $('#agree1') && $('#agree1').checked;
+  var b=$('#applyBtn'); if(!b) return;
+  var on = !!(okReq && okAgr);
+  b.disabled=!on; b.style.opacity=on?'1':'.45'; b.style.cursor=on?'pointer':'not-allowed';
+  var m=$('#applyMsg');
+  if(m && !m.dataset.sent){
+    if(!okReq) m.textContent='* 표시는 필수 입력입니다.';
+    else if(!okAgr) m.textContent='개인정보 수집·이용 동의가 필요합니다.';
+    else m.textContent='신청할 준비가 되었습니다.';
+  }
 }
-['#fCompany','#fName','#fEmail'].forEach(function(s){ var e=$(s); if(e) e.addEventListener('input',mail); });
+function applyPayload(){
+  return { company:fv('#fCompany'), name:fv('#fName'), email:fv('#fEmail'), tel:fv('#fTel'),
+    cad:st.cad, memo:fv('#fMemo'),
+    agreePrivacy:!!($('#agree1')&&$('#agree1').checked),
+    agreeMarketing:!!($('#agree2')&&$('#agree2').checked),
+    ts:new Date().toISOString(), page:location.href };
+}
+function applyMailto(p){
+  var body='MoldCheck 평가판 신청\n\n'+
+    '회사명: '+p.company+'\n담당자: '+p.name+'\n이메일: '+p.email+'\n연락처: '+(p.tel||'-')+
+    '\n사용 CAD: '+p.cad+'\n문의 내용: '+(p.memo||'-')+'\n\n'+
+    '[동의 기록]\n개인정보 수집·이용 동의(필수): '+(p.agreePrivacy?'동의':'미동의')+
+    '\n광고성 정보 수신 동의(선택): '+(p.agreeMarketing?'동의':'미동의')+
+    '\n동의 시각: '+p.ts+'\n';
+  location.href='mailto:'+MAIL_TO+'?subject='+encodeURIComponent('[MoldCheck] 평가판 신청 — '+p.company)+'&body='+encodeURIComponent(body);
+}
+function applySubmit(){
+  var b=$('#applyBtn'), m=$('#applyMsg'); if(!b||b.disabled) return;
+  var p=applyPayload();
+  if(!FORM_ENDPOINT){ applyMailto(p); if(m){ m.textContent='메일 앱이 열립니다. 그대로 보내주시면 접수됩니다.'; } return; }
+  b.disabled=true; b.style.opacity='.45'; b.textContent='보내는 중…';
+  if(m) m.textContent='';
+  fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(p)})
+    .then(function(){ applyDone(); })
+    .catch(function(){ b.disabled=false; b.style.opacity='1'; b.textContent='평가판 신청하기';
+      if(m) m.textContent='전송에 실패했습니다. 메일 앱으로 보내드릴까요?';
+      applyMailto(p); });
+}
+function applyDone(){
+  var box=$('#applybox'); if(!box) return;
+  box.innerHTML='<div class="mono" style="font-size:12px;color:#D97757;letter-spacing:.1em">신청 완료</div>'+
+    '<h3 class="disp" style="font-size:28px;font-weight:600;margin:10px 0 8px">접수되었습니다.</h3>'+
+    '<p style="margin:0;font-size:14px;color:#C9C4B8;line-height:1.7">평가판 파일과 설치 안내를 보내 드리겠습니다.<br>보통 1영업일 안에 회신드립니다.</p>'+
+    '<p style="margin:14px 0 0;font-size:13px;color:#9A958B;line-height:1.7">회신이 스팸함으로 갈 수 있습니다. 하루가 지나도 메일이 없으면 <a href="mailto:'+MAIL_TO+'" style="color:#D97757">'+MAIL_TO+'</a> 로 알려 주세요.</p>';
+}
+window.__apply={payload:function(){return applyPayload()},state:function(){return applyState()},endpoint:function(u){FORM_ENDPOINT=u},get url(){return FORM_ENDPOINT}};
+(function(){
+  ['#fCompany','#fName','#fEmail','#fTel','#fMemo'].forEach(function(sel){ var e=$(sel); if(e) e.addEventListener('input',applyState); });
+  ['#agree1','#agree2'].forEach(function(sel){ var e=$(sel); if(e) e.addEventListener('change',applyState); });
+  var b=$('#applyBtn'); if(b) b.addEventListener('click',applySubmit);
+  applyState();
+})();
 // 히어로 패럴랙스 + 스포트라이트
 var hero=$('#hero');
 hero.addEventListener('mousemove',function(e){
@@ -658,7 +734,7 @@ if(!CSS.supports('animation-timeline','view()')&&'IntersectionObserver' in windo
   var io=new IntersectionObserver(function(es){es.forEach(function(en){ if(en.isIntersecting){ en.target.style.animation='rise 1s cubic-bezier(.2,.8,.2,1) both'; io.unobserve(en.target); } })},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){ el.style.animation='none'; el.style.opacity='0'; io.observe(el); });
 }
-draw(); feats(); rules(); faq(); cads(); mail();
+draw(); feats(); rules(); faq(); cads(); applyState();
 })();
 
 /* 모바일 메뉴 */

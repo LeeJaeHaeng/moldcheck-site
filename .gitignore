@@ -1,0 +1,6 @@
+# 공개 사이트에 올라가면 안 되는 것 (배포 스크립트가 git add -A 를 하므로 여기서 제외)
+_apps_script/
+*.bat
+*.md
+배포_안내.md
+Create
