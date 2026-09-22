@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MoldCheck — 가공 전에 홀 설계 오류를 자동으로 잡는 CAD 설계검사 에디터</title>
-<meta name="description" content="x_t·STEP·DWG·DXF 도면을 열면 탭·여유공·카운터보어·냉각수로·이젝터핀을 인식하고 KS·JIS·ISO 규격과 대조해 설계 오류를 찾아냅니다. 도면 데이터는 PC를 벗어나지 않습니다.">
+<meta name="description" content="x_t·STEP·DWG·DXF 도면을 열면 탭·여유공·카운터보어·냉각수로·이젝터핀을 인식하고 KS·JIS·ISO 규격과 대조해 설계 오류를 찾아냅니다. 도면 데이터는 PC를 벗어나지 않습니다. TIGER MOLD&BASE · TLAB.">
 <meta property="og:title" content="MoldCheck — 가공 전에 잡는다. 홀 하나까지.">
 <meta property="og:description" content="몰드베이스·금형·기계가공 부품 CAD 설계검사. 26개 규칙, 규격 대조, NX 저널 출력.">
 <meta property="og:type" content="website">
@@ -183,10 +183,13 @@
 <!-- NAV -->
 <div style="position:sticky;top:0;z-index:10;background:rgba(15,14,12,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,244,239,.08)">
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:60px">
-    <div style="display:flex;align-items:baseline;gap:10px">
-      <div class="disp" style="font-size:26px;font-weight:700">Mold<span style="color:#D97757">Check</span></div>
-      <div class="mono" style="font-size:11px;color:#9A958B;letter-spacing:.06em">CAD DESIGN CHECKER</div>
-    </div>
+    <a href="#hero" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit">
+      <img src="img/logo.png" alt="TIGER MOLD&amp;BASE" style="height:26px;width:auto;display:block;border-radius:3px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <div class="disp" style="font-size:26px;font-weight:700">Mold<span style="color:#D97757">Check</span></div>
+        <div class="mono" style="font-size:11px;color:#9A958B;letter-spacing:.06em">TIGER MOLD&amp;BASE · TLAB</div>
+      </div>
+    </a>
     <div class="nav-links">
       <a href="#demo" style="font-size:13px;color:#C9C4B8">체험</a>
       <a href="#accuracy" style="font-size:13px;color:#C9C4B8">정확도</a>
@@ -429,8 +432,8 @@
         <h2 class="disp h2" style="font-size:60px;font-weight:700;line-height:1.06">도면 1건을 보내 주시면,<br>검사 리포트로 답합니다.</h2>
         <p style="margin:0;font-size:16px;color:#C9C4B8;max-width:520px">x_t 또는 STEP 파일 하나면 됩니다. 오류·경고 목록과 3D 스냅샷이 담긴 리포트를 보내 드립니다. 도면은 검토 목적으로만 사용하고 회신 후 폐기합니다.</p>
         <div style="display:flex;flex-direction:column;gap:4px;margin-top:8px">
-          <div style="font-size:15px">MoldCheck 개발자</div>
-          <div class="mono" style="font-size:14px;color:#C9C4B8"><a href="mailto:dlwogod2479@gmail.com" style="color:#D97757">dlwogod2479@gmail.com</a></div>
+          <div style="font-size:15px">TIGER MOLD&amp;BASE · 기업부설연구소 (TLAB)</div>
+          <div class="mono" style="font-size:14px;color:#C9C4B8"><a href="mailto:tiger@tigermb.com" style="color:#D97757">tiger@tigermb.com</a></div>
         </div>
       </div>
       <div id="applybox" style="display:flex;flex-direction:column;gap:10px;background:rgba(245,244,239,.04);border:1px solid rgba(245,244,239,.12);border-radius:16px;padding:26px">
@@ -463,7 +466,7 @@
     </div>
     <div class="foot" style="display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:20px;border-top:1px solid rgba(245,244,239,.12);flex-wrap:wrap;gap:10px">
       <div class="disp" style="font-size:22px;font-weight:700">Mold<span style="color:#D97757">Check</span></div>
-      <div class="mono" style="font-size:12px;color:#9A958B">© 2026 MoldCheck — <a href="eula.html">사용권 계약</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="notices.html">오픈소스 고지</a> · three.js / pako (MIT), IBM Plex · Barlow (OFL)</div>
+      <div class="mono" style="font-size:12px;color:#9A958B">© 2026 TIGER MOLD&amp;BASE · TLAB — <a href="eula.html">사용권 계약</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="notices.html">오픈소스 고지</a> · three.js / pako (MIT), IBM Plex · Barlow (OFL)</div>
     </div>
   </div>
 </div>
@@ -659,7 +662,7 @@ function cads(){
    Google Apps Script 웹앱 주소를 넣으면 시트에 기록되고 알림 메일이 온다.
    설정 방법: apps_script/설치안내.md                                   */
 var FORM_ENDPOINT='';
-var MAIL_TO='dlwogod2479@gmail.com';
+var MAIL_TO='tiger@tigermb.com';
 
 function fv(id){ var e=$(id); return (e&&e.value||'').trim(); }
 function validEmail(x){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(x); }
